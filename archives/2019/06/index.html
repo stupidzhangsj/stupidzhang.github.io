@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Archives: 2019/7 | stupidzhang</title>
+  <title>Archives: 2019/6 | stupidzhang</title>
   
   <meta name="keywords" content="stupidzhang">
   
@@ -291,8 +291,6 @@
         
           
         
-          
-        
       
     
     
@@ -310,8 +308,8 @@
       
         
   <h2 class="title">
-    <a href="/2019/07/11/如何保证消息的可靠性传输/">
-      如何保证消息的可靠性传输
+    <a href="/2019/06/11/如何优雅的实现分布式锁/">
+      如何优雅的实现分布式锁
     </a>
   </h2>
 
@@ -339,7 +337,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-07-11</p>
+    <p>2019-06-11</p>
   </a>
 </div>
 
@@ -370,128 +368,40 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <hr>
-<p>title: 如何保证消息的可靠性传输？<br>date: 2019-07-11 11:33:56</p>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个是肯定的，用 MQ 有个基本原则，就是<strong>数据不能多一条，也不能少一条</strong>，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。</p>
-<p>如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中<strong>绝对不会把计费消息给弄丢</strong>。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
-<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><img src="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562579935480.png" alt="enter description here"></p>
-      
-        <div class="readmore">
-          <a href="/2019/07/11/如何保证消息的可靠性传输/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/07/11/为什么使用消息队列/">
-      为什么使用消息队列
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>stupidzhang</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-07-11</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h4 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h4><ul>
-<li>为什么使用消息队列？</li>
-<li>消息队列有什么优点和缺点？</li>
-<li>Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别，以及适合哪些场景？</li>
-</ul>
-<h4 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h4><p>其实面试官主要是想看看：</p>
+      <h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><p><strong>写在前面</strong></p>
+<p>很多大型网站及应用都是分布式部署的，分布式场景中的数据一致性问题一直是一个比较重要的话题。<br>分布式的 CAP 理论告诉我们“任何一个分布式系统都无法同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance），最多只能同时满足两项。”<br>所以，很多系统在设计之初就要对这三者做出取舍。在绝大多数的场景中，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证“最终一致性”，只要这个最终时间是在用户可以接受的范围内即可。</p>
+<p>在实现分布式锁之前，我们先想一想，我们需要的分布式锁是怎样的？</p>
 <ul>
-<li><p>第一，你知不知道你们系统里为什么要用消息队列这个东西？<br>不少候选人，说自己项目里用了 Redis、MQ，但是其实他并不知道自己为什么要用这个东西。其实说白了，就是为了用而用，或者是别人设计的架构，他从头到尾都没思考过。<br>没有对自己的架构问过为什么的人，一定是平时没有思考的人，面试官对这类候选人印象通常很不好。因为面试官担心你进了团队之后只会木头木脑的干呆活儿，不会自己思考。</p>
-</li>
-<li><p>第二，你既然用了消息队列这个东西，你知不知道用了有什么好处&amp;坏处？<br>你要是没考虑过这个，那你盲目弄个 MQ 进系统里，后面出了问题你是不是就自己溜了给公司留坑？你要是没考虑过引入一个技术可能存在的弊端和风险，面试官把这类候选人招进来了，基本可能就是挖坑型选手。就怕你干 1 年挖一堆坑，自己跳槽了，给公司留下无穷后患。</p>
-</li>
-<li><p>第三，既然你用了 MQ，可能是某一种 MQ，那么你当时做没做过调研？<br>你别傻乎乎的自己拍脑袋看个人喜好就瞎用了一个 MQ，比如 Kafka，甚至都从没调研过业界流行的 MQ 到底有哪几种。每一个 MQ 的优点和缺点是什么。每一个 MQ 没有绝对的好坏，但是就是看用在哪个场景可以扬长避短，利用其优势，规避其劣势。<br>如果是一个不考虑技术选型的候选人招进了团队，leader 交给他一个任务，去设计个什么系统，他在里面用一些技术，可能都没考虑过选型，最后选的技术可能并不一定合适，一样是留坑。</p>
-</li>
+<li>保证在分布式部署的应用集群中，个方法在同一时间只能被一个线程执行。</li>
+<li>这把锁要是一把可重入锁（避免死锁）；</li>
+<li>这把锁最好是一把阻塞锁（根据业务需求考虑要不要这条）；</li>
+<li>有高可用的获取锁和释放锁功能；</li>
+<li>获取锁和释放锁的性能要好。</li>
 </ul>
-<h4 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h4><p><strong>为什么使用消息队列</strong><br>其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？</p>
-<p>面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用 MQ 可能会很麻烦，但是你现在用了 MQ 之后带给了你很多的好处。</p>
-<p>先说一下消息队列常见的使用场景吧，其实场景有很多，但是比较核心的有 3 个：解耦、异步、削峰。</p>
+<p><strong>针对分布式锁的实现，目前比较常用的有以下几种方案：</strong></p>
+<ul>
+<li>基于数据库</li>
+<li>基于缓存（redis，memcache等）</li>
+<li>基于Zookeeper实现分布式锁</li>
+</ul>
+<p>这里我先说说基于数据库和缓存实现的方案。</p>
       
         <div class="readmore">
-          <a href="/2019/07/11/为什么使用消息队列/" class="flat-box">
+          <a href="/2019/06/11/如何优雅的实现分布式锁/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             阅读全文
           </a>
         </div>
       
     </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/分布式/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>分布式</a>
+        
+          <a href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Redis</a>
+        
+      </div>
     
   </section>
 </article>
