@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>如何保证消息的可靠性传输？ | stupidzhang</title>
+  <title>如何保证消息的可靠性传输 | stupidzhang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面试题如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？ 面试官心理分析这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。 如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中绝对不会把计费消息给弄丢。 面试题剖析数">
+  <meta name="description" content="title: 如何保证消息的可靠性传输？date: 2019-07-11 11:33:56 tags:面试题如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？ 面试官心理分析这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。 如果说你这个是用 MQ 来传递非常核心的消">
 <meta name="keywords" content="stupidzhang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何保证消息的可靠性传输？">
+<meta property="og:title" content="如何保证消息的可靠性传输">
 <meta property="og:url" content="http://yoursite.com/2019/07/11/如何保证消息的可靠性传输/index.html">
 <meta property="og:site_name" content="stupidzhang">
-<meta property="og:description" content="面试题如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？ 面试官心理分析这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。 如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中绝对不会把计费消息给弄丢。 面试题剖析数">
+<meta property="og:description" content="title: 如何保证消息的可靠性传输？date: 2019-07-11 11:33:56 tags:面试题如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？ 面试官心理分析这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。 如果说你这个是用 MQ 来传递非常核心的消">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562579935480.png">
 <meta property="og:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562580054894.png">
 <meta property="og:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/qrcode_for_gh_52f3263641d5_258.jpg">
-<meta property="og:updated_time" content="2019-07-11T05:55:46.766Z">
+<meta property="og:updated_time" content="2019-07-11T06:13:36.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何保证消息的可靠性传输？">
-<meta name="twitter:description" content="面试题如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？ 面试官心理分析这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。 如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中绝对不会把计费消息给弄丢。 面试题剖析数">
+<meta name="twitter:title" content="如何保证消息的可靠性传输">
+<meta name="twitter:description" content="title: 如何保证消息的可靠性传输？date: 2019-07-11 11:33:56 tags:面试题如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？ 面试官心理分析这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。 如果说你这个是用 MQ 来传递非常核心的消">
 <meta name="twitter:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562579935480.png">
   
     <link rel="alternative" href="/atom.xml" title="stupidzhang" type="application/atom+xml">
@@ -170,20 +170,22 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何保证消息的可靠性传输？
+      如何保证消息的可靠性传输
     </h1>
   
 
         
         <a href="/2019/07/11/如何保证消息的可靠性传输/" class="archive-article-date">
-  	<time datetime="2019-07-11T03:33:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
+  	<time datetime="2019-07-11T06:10:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
+        <hr>
+<p>title: 如何保证消息的可靠性传输？<br>date: 2019-07-11 11:33:56</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
 <h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个是肯定的，用 MQ 有个基本原则，就是<strong>数据不能多一条，也不能少一条</strong>，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。</p>
 <p>如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中<strong>绝对不会把计费消息给弄丢</strong>。</p>
 <h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
@@ -295,6 +297,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/11/如何优雅的实现分布式锁/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          如何优雅的实现分布式锁
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/11/为什么使用消息队列/" id="article-nav-older" class="article-nav-link-wrap">

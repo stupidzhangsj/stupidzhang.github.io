@@ -160,6 +160,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-如何优雅的实现分布式锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/11/如何优雅的实现分布式锁/">如何优雅的实现分布式锁</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/11/如何优雅的实现分布式锁/" class="archive-article-date">
+  	<time datetime="2019-07-11T06:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><p><strong>写在前面</strong></p>
+<p>很多大型网站及应用都是分布式部署的，分布式场景中的数据一致性问题一直是一个比较重要的话题。<br>分布式的 CAP 理论告诉我们“任何一个分布式系统都无法同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance），最多只能同时满足两项。”<br>所以，很多系统在设计之初就要对这三者做出取舍。在绝大多数的场景中，都需要牺牲强一致性来换取系统的高可用性，系统往往只需要保证“最终一致性”，只要这个最终时间是在用户可以接受的范围内即可。</p>
+<p>在实现分布式锁之前，我们先想一想，我们需要的分布式锁是怎样的？</p>
+<ul>
+<li>保证在分布式部署的应用集群中，个方法在同一时间只能被一个线程执行。</li>
+<li>这把锁要是一把可重入锁（避免死锁）；</li>
+<li>这把锁最好是一把阻塞锁（根据业务需求考虑要不要这条）；</li>
+<li>有高可用的获取锁和释放锁功能；</li>
+<li>获取锁和释放锁的性能要好。</li>
+</ul>
+<p><strong>针对分布式锁的实现，目前比较常用的有以下几种方案：</strong></p>
+<ul>
+<li>基于数据库</li>
+<li>基于缓存（redis，memcache等）</li>
+<li>基于Zookeeper实现分布式锁</li>
+</ul>
+<p>这里我先说说基于数据库和缓存实现的方案。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/11/如何优雅的实现分布式锁/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-如何保证消息的可靠性传输" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -167,20 +246,22 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/11/如何保证消息的可靠性传输/">如何保证消息的可靠性传输？</a>
+      <a class="article-title" href="/2019/07/11/如何保证消息的可靠性传输/">如何保证消息的可靠性传输</a>
     </h1>
   
 
         
         <a href="/2019/07/11/如何保证消息的可靠性传输/" class="archive-article-date">
-  	<time datetime="2019-07-11T03:33:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
+  	<time datetime="2019-07-11T06:10:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
+        <hr>
+<p>title: 如何保证消息的可靠性传输？<br>date: 2019-07-11 11:33:56</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
 <h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个是肯定的，用 MQ 有个基本原则，就是<strong>数据不能多一条，也不能少一条</strong>，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。</p>
 <p>如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中<strong>绝对不会把计费消息给弄丢</strong>。</p>
 <h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
