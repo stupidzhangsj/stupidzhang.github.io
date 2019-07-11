@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562577465642.png">
 <meta property="og:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562577478496.png">
 <meta property="og:image" content="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/qrcode_for_gh_52f3263641d5_258.jpg">
-<meta property="og:updated_time" content="2019-07-11T03:24:27.870Z">
+<meta property="og:updated_time" content="2019-07-11T05:56:13.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为什么使用消息队列">
 <meta name="twitter:description" content="面试题 为什么使用消息队列？ 消息队列有什么优点和缺点？ Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别，以及适合哪些场景？  面试官心理分析其实面试官主要是想看看：  第一，你知不知道你们系统里为什么要用消息队列这个东西？不少候选人，说自己项目里用了 Redis、MQ，但是其实他并不知道自己为什么要用这个东西。其实说白了，就是为了用而用，或者是别人设计的架构，他从">
@@ -204,6 +204,7 @@
 <h4 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h4><p><strong>为什么使用消息队列</strong><br>其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？</p>
 <p>面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用 MQ 可能会很麻烦，但是你现在用了 MQ 之后带给了你很多的好处。</p>
 <p>先说一下消息队列常见的使用场景吧，其实场景有很多，但是比较核心的有 3 个：解耦、异步、削峰。</p>
+<a id="more"></a>
 <h4 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h4><p>看这么个场景。A 系统发送数据到 BCD 三个系统，通过接口调用发送。如果 E 系统也要这个数据呢？那如果 C 系统现在不需要了呢？A 系统负责人几乎崩溃……</p>
 <p><img src="https://www.github.com/ZhangShengJun93/picture/raw/master/markdown/picture/1562577369332.png" alt="enter description here"></p>
 <p>在这个场景中，A 系统跟其它各种乱七八糟的系统严重耦合，A 系统产生一条比较关键的数据，很多系统都需要 A 系统将这个数据发送过来。A 系统要时时刻刻考虑 BCDE 四个系统如果挂了该咋办？要不要重发，要不要把消息存起来？头发都白了啊！</p>
@@ -309,7 +310,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/11/如何保证消息的可靠性传输？/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/11/如何保证消息的可靠性传输/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
